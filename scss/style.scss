@@ -179,7 +179,6 @@ header {
 }
 
 #main-contents {
-    margin-bottom: 80px;
     section {
         text-align: center;
     }
@@ -241,6 +240,18 @@ header {
     }
     #schedule {
         margin-top: 16px;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.4); /*스크롤바의 색상*/
+            border-radius: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: rgba(255, 255, 255, 0.25); /*스크롤바 트랙 색상*/
+            border-radius: 5px;
+        }
         .week {
             position: relative;
             .date-wrapper {
@@ -347,8 +358,12 @@ header {
 }
 
 footer {
-    padding: 20px;
+    width: 100%;
+    padding: 10px;
     text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     #github-link {
         color: map-get($color, dark);
         font-family: map-get($font-family, normal);

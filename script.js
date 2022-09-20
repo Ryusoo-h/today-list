@@ -17,3 +17,7 @@ toggleButton[0].addEventListener('click', function() { // #calendar 클릭시
     toggleContentsWrapper.classList.remove('show-list');
     body.classList.remove('show-list');
 })
+
+// 스케쥴 height 지정
+const schedule = document.querySelector("#schedule");
+schedule.style.height = window.innerHeight - schedule.getBoundingClientRect().top - 50 + "px";
