@@ -4,20 +4,37 @@
   font-weight: 300;
   font-style: normal;
 }
+@font-face {
+  font-family: "S-CoreDream-3Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 :root {
   font-family: "PyeongChangPeace-Light";
   font-size: 15px;
+  color: #45413E;
   overflow-x: hidden;
 }
 
-.white-font-light, header #main-menu ul button, header #today-title {
+.white-font-light, .show-list #github-link:hover, #calendar #schedule .week .date-wrapper li.today, #main-menu ul button, #today-title {
   font-weight: 300;
   color: #fff;
   text-shadow: 0px 0px 7px rgba(255, 255, 255, 0.7), 0px 0px 2px #fff;
 }
 
-.white-light, header #today-title::after {
+.point-font-light, footer #github-link:hover, #calendar #schedule .week .ongoing-wrapper li, #calendar #ongoing-list ul li span {
+  font-weight: 300;
+  color: #9e4e03;
+  text-shadow: 0px 0px 2px rgba(201, 98, 3, 0.4);
+}
+
+.white-light, #calendar #schedule .week .ongoing-wrapper li ::-webkit-progress-value, #calendar #schedule .week .date-wrapper li::after, #calendar #schedule .week .date-wrapper li:not(:last-child)::before, #today-title::after {
   box-shadow: 0px 0px 7px rgba(255, 255, 255, 0.7), 0px 0px 2px #fff;
+}
+
+.hide {
+  display: none;
 }
 
 body {
@@ -26,8 +43,32 @@ body {
   background-color: #F3E6DA;
   transition: background-color 0.5s cubic-bezier(0.34, 0.065, 0.255, 0.99);
 }
+body::before {
+  content: "";
+  display: block;
+  width: 104%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  background-image: url(../img/bg.jpg);
+  background-size: cover;
+  transform: translateX(-3%);
+  transition: transform 1.2s cubic-bezier(0.28, -0.01, 0.015, 1.06);
+  pointer-events: none;
+}
 body.show-list {
   background-color: #45413E;
+}
+body.show-list::before {
+  opacity: 0.3;
+  transform: translateX(0%);
+}
+
+header {
+  text-align: center;
 }
 
 .container {
@@ -35,17 +76,14 @@ body.show-list {
   width: 1450px;
 }
 
-header {
-  text-align: center;
-}
-header #today-title {
+#today-title {
   display: inline-block;
   font-size: 60px;
   line-height: 2.6em;
   margin: 0;
   position: relative;
 }
-header #today-title::after {
+#today-title::after {
   content: "";
   display: block;
   width: 100%;
@@ -53,10 +91,11 @@ header #today-title::after {
   margin-top: -0.5em;
   background-color: #fff;
 }
-header #main-menu {
+
+#main-menu {
   margin: 20px 0;
 }
-header #main-menu ul {
+#main-menu ul {
   width: 580px;
   height: 44px;
   margin: 0 auto;
@@ -65,25 +104,25 @@ header #main-menu ul {
   clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);
   position: relative;
 }
-header #main-menu ul button {
+#main-menu ul button {
   background-color: unset;
   border: none;
   padding: 8px 64px;
   text-align: left;
 }
-header #main-menu ul li:last-child button {
+#main-menu ul li:last-child button {
   text-align: right;
 }
-header #main-menu.toggle_buttons-wrapper ul {
+#main-menu.toggle_buttons-wrapper ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-header #main-menu.toggle_buttons-wrapper ul button {
+#main-menu.toggle_buttons-wrapper ul button {
   font-size: 24px;
   transition: opacity 0.5s cubic-bezier(0.34, 0.065, 0.255, 0.99), font-size 0.7s cubic-bezier(0.34, 0.065, 0.255, 0.99);
 }
-header #main-menu.toggle_buttons-wrapper ul::after {
+#main-menu.toggle_buttons-wrapper ul::after {
   pointer-events: none;
   content: "";
   display: block;
@@ -99,7 +138,7 @@ header #main-menu.toggle_buttons-wrapper ul::after {
   background-position: center;
   transition: all 0.5s cubic-bezier(0.79, 0.16, 0.23, 1.07);
 }
-header #main-menu.toggle_buttons-wrapper ul::before {
+#main-menu.toggle_buttons-wrapper ul::before {
   content: "";
   display: block;
   position: absolute;
@@ -112,29 +151,25 @@ header #main-menu.toggle_buttons-wrapper ul::before {
   pointer-events: none;
   z-index: -1;
 }
-header #main-menu.toggle_buttons-wrapper ul.show-list::before {
+#main-menu.toggle_buttons-wrapper ul.show-list::before {
   left: 0%;
 }
-header #main-menu.toggle_buttons-wrapper ul.show-list::after {
+#main-menu.toggle_buttons-wrapper ul.show-list::after {
   left: calc(100% - 54px);
 }
-header #main-menu.toggle_buttons-wrapper ul li:not(.on) button {
+#main-menu.toggle_buttons-wrapper ul li:not(.on) button {
   opacity: 0.4;
   font-size: 22px;
 }
-header #main-menu.toggle_buttons-wrapper ul li:not(.on) button:hover {
+#main-menu.toggle_buttons-wrapper ul li:not(.on) button:hover {
   opacity: 1;
 }
 
+#main-contents {
+  margin-bottom: 80px;
+}
 #main-contents section {
   text-align: center;
-}
-#main-contents #calendar {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-#main-contents #list {
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.1);
 }
 #main-contents .toggle_contents-box {
   overflow: hidden;
@@ -149,4 +184,175 @@ header #main-menu.toggle_buttons-wrapper ul li:not(.on) button:hover {
 }
 #main-contents .toggle_contents-box .toggle_contents-wrapper .toggle_contents {
   width: 100%;
+}
+
+#calendar #ongoing-title {
+  margin: 8px 16px;
+  font-size: 23px;
+  font-weight: normal;
+}
+#calendar #ongoing-list {
+  background-color: rgba(255, 255, 255, 0.4);
+  display: grid;
+  text-align: left;
+  grid: 1fr/100px 1fr;
+}
+#calendar #ongoing-list ul {
+  margin: 8px;
+  padding: 0;
+  list-style: none;
+}
+#calendar #ongoing-list ul li {
+  font-family: "S-CoreDream-3Light";
+  padding: 6px;
+  vertical-align: top;
+}
+#calendar #ongoing-list ul li span {
+  vertical-align: top;
+  font-size: 16px;
+  font-family: "PyeongChangPeace-Light";
+  color: #9e4e03;
+  display: inline-block;
+  padding: 0 12px 0 0;
+}
+#calendar #schedule {
+  margin-top: 16px;
+}
+#calendar #schedule .week {
+  position: relative;
+}
+#calendar #schedule .week .date-wrapper {
+  pointer-events: none;
+  min-height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template: 200px/repeat(7, 1fr);
+  list-style: none;
+  text-align: left;
+}
+#calendar #schedule .week .date-wrapper li {
+  font-size: 20px;
+  margin: 10px;
+  padding: 4px;
+  position: relative;
+}
+#calendar #schedule .week .date-wrapper li.today {
+  background-color: #EACAAD;
+  color: #fff;
+}
+#calendar #schedule .week .date-wrapper li:not(:last-child)::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 1px;
+  height: calc(100% + 20px);
+  background-color: #fff;
+}
+#calendar #schedule .week .date-wrapper li::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: calc(100% + 20px);
+  height: 1px;
+  background-color: #fff;
+}
+#calendar #schedule .week .ongoing-wrapper {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template: repeat(5, 40px)/repeat(7, 1fr);
+  list-style: none;
+  text-align: left;
+  grid-auto-flow: row;
+}
+#calendar #schedule .week .ongoing-wrapper li {
+  font-size: 16px;
+  color: #9e4e03;
+  margin: 10px 10px 0;
+  background-color: rgba(239, 207, 183, 0.3);
+  backdrop-filter: blur(2px);
+  padding: 4px 8px;
+  position: relative;
+  grid-row-start: 2;
+  grid-column: 1/8;
+  position: relative;
+}
+#calendar #schedule .week .ongoing-wrapper li progress {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 0;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+}
+#calendar #schedule .week .ongoing-wrapper li ::-webkit-progress-bar {
+  background-color: #EEDDCE;
+}
+#calendar #schedule .week .ongoing-wrapper li ::-webkit-progress-value {
+  background-color: rgb(255, 255, 255);
+}
+#calendar #schedule .week .ongoing-wrapper li a > img {
+  vertical-align: top;
+  margin-top: 2px;
+}
+#calendar #schedule .start2022-09-19 .ongoing-wrapper .list1 {
+  grid-row-start: 2;
+  grid-column: 1/8;
+}
+#calendar #schedule .start2022-09-19 .ongoing-wrapper .list2 {
+  grid-row-start: 3;
+  grid-column: 1/6;
+}
+#calendar #schedule .start2022-09-19 .ongoing-wrapper .list3 {
+  grid-row-start: 3;
+  grid-column: 6/8;
+}
+
+#list {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+}
+footer #github-link {
+  color: #45413E;
+  font-family: "S-CoreDream-3Light";
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px;
+  vertical-align: top;
+}
+footer #github-link img {
+  vertical-align: top;
+  margin-top: 2px;
+  opacity: 0.8;
+}
+footer #github-link img.white {
+  display: none;
+}
+
+.show-list #github-link {
+  color: #fff;
+}
+.show-list #github-link .black {
+  display: none;
+}
+.show-list #github-link .white {
+  display: inline-block;
 }

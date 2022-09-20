@@ -13,9 +13,9 @@
         <div class="container">
             <h1 id="today-title">TODAY 2022-09-19</h1>
             <nav id="main-menu" class="toggle_buttons-wrapper">
-                <ul>
-                    <li class="toggle_button on"><button>Calendar</button></li>
-                    <li class="toggle_button"><button>List</button></li>
+                <ul role="tablist">
+                    <li class="toggle_button on"><button role="tab">Calendar</button></li>
+                    <li class="toggle_button"><button role="tab">List</button></li>
                 </ul>
             </nav>
         </div>
@@ -23,19 +23,107 @@
     <section id="main-contents">
         <div class="container toggle_contents-box">
             <div class="toggle_contents-wrapper">
-                <section id="calendar" class="toggle_contents">
-                    <br><br>
-                    와아아앙 <img src="/img/star.svg" alt="">
-                    <br><br>
+                <section id="calendar" class="toggle_contents" role="tabpanel">
+                    <h1 class="hide">Calendar</h1>
+                    <section id="ongoing-list">
+                        <h2 id="ongoing-title">진행중</h2>
+                        <ul>
+                            <li><span>CSS 설계 실전가이드 완독</span>진행률 (86/386) / 목표일 일주일(2022-09-19~2022-09-24)</li>
+                            <li><span>webRTC 강의 완강</span>진행률 (3/4) / 목표일 일주일(2022-09-19~2022-09-23)</li>
+                        </ul>
+                    </section>
+                    <section id="schedule">
+                        <h2 class="hide">일정표</h2>
+                        <div class="week start2022-09-19">
+                            <ul class="date-wrapper">
+                                <li class="today">19</li>
+                                <li>20</li>
+                                <li>21</li>
+                                <li>22</li>
+                                <li>23</li>
+                                <li class="weekend">24</li>
+                                <li class="weekend">25</li>
+                            </ul>
+                            <ul class="ongoing-wrapper">
+                                <li class="list1">CSS 설계 실전가이드 완독
+                                    <progress value="86" max="386">
+                                </li>
+                                <li class="list2">webRTC 강의 완강
+                                    <progress value="3" max="4">
+                                </li>
+                                <li class="list3">webRTC 강의 보고 만든것 github에 올리기
+                                    <progress value="0" max="100">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="week start2022-09-26">
+                            <ul class="date-wrapper">
+                                <li>26</li>
+                                <li>27</li>
+                                <li>28</li>
+                                <li>29</li>
+                                <li>30</li>
+                                <li class="weekend">10/1</li>
+                                <li class="weekend">2</li>
+                            </ul>
+                            <ul class="ongoing-wrapper">
+                                <li>AWSOME DAY 
+                                    <a href="https://aws.amazon.com/ko/events/awsome-day/awsome-day-online/?trkCampaign=awsome-day-online&trk=93786f68-ab52-4f81-a4ef-b76e0bcce837&sc_channel=em&mkt_tok=MTEyLVRaTS03NjYAAAGGj8B8vXc29W7EtQzAJiSA6IRSr-X5dDx18lK6qMPJ5JvnOs93oQ_-UNMyj--P_F5WgXTux55UzKZKkDqZsWVDzzraI7y9Dqj-X5OwzuzLeJWWJMfzoHUC">
+                                        <img src="./img/link.svg" alt="바로가기">
+                                    </a>
+                                    <progress value="0" max="1">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="week start2022-10-03">
+                            <ul class="date-wrapper">
+                                <li>3</li>
+                                <li>4</li>
+                                <li>5</li>
+                                <li>6</li>
+                                <li>7</li>
+                                <li class="weekend">8</li>
+                                <li class="weekend">9</li>
+                            </ul>
+                            <ul class="ongoing-wrapper">
+                                <li>새로운 일정이 생겼을때 기본값
+                                    <progress value="0" max="1">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="week start2022-10-10">
+                            <ul class="date-wrapper">
+                                <li>10</li>
+                                <li>11</li>
+                                <li>12</li>
+                                <li>13</li>
+                                <li>14</li>
+                                <li class="weekend">15</li>
+                                <li class="weekend">16</li>
+                            </ul>
+                            <ul class="ongoing-wrapper">
+                                <!-- <li>새로운 일정이 생겼을때 기본값
+                                    <progress value="0" max="1">
+                                </li> -->
+                            </ul>
+                        </div>
+                    </section>
                 </section>
-                <section id="list" class="toggle_contents">
+                <section id="list" class="toggle_contents" role="tabpanel">
+                    <h1 class="hide">List</h1>
                     <br><br>
-                    데헤헷 <img src="/img/star.svg" alt="">
-                    <br><br>
-                    <br><br>
+                    <img src="/img/star.svg" alt=""> 데헤헷 <img src="/img/star.svg" width="20" height="20" alt="">
+                    <br><br>나중에 여기도 뚜따뚜따 해야지
                 </section>
             </div>
         </div>
     </section>
+    <footer>
+        <a id="github-link" href="https://github.com/Ryusoo-h/today-list">
+            <img class="black" src="./img/github-logo.png" width="16" height="16" alt="github-logo-icon">
+            <img class="white" src="./img/github-logo-white.png" width="16" height="16" alt="github-logo-icon">
+            Ryusoo-h/today-list
+        </a>
+    </footer>
 </body>
 </html>

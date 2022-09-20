@@ -4,137 +4,174 @@
     font-weight: 300;
     font-style: normal;
 }
-
-:root {
-    font-family: 'PyeongChangPeace-Light';
-    font-size: 15px;
-    overflow-x: hidden;
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
+$font-family: (
+    point: 'PyeongChangPeace-Light',
+    normal: 'S-CoreDream-3Light',
+);
 $color: (
     white: #fff,
     milkt: #F3E6DA,
     dark: #45413E,
-    point: #924600,
+    point: #9e4e03,
 );
 $curve: cubic-bezier(0.340, 0.065, 0.255, 0.990);
 
-
+:root {
+    font-family: map-get($font-family, point);
+    font-size: 15px;
+    color: map-get($color, dark);
+    overflow-x: hidden;
+}
 .white-font-light {
     font-weight: 300;
     color: map-get($color, white);
     text-shadow: 0px 0px 7px rgba(255, 255, 255, 0.7), 0px 0px 2px map-get($color, white);
 }
+.point-font-light {
+    font-weight: 300;
+    color: map-get($color, point);
+    text-shadow: 0px 0px 2px rgba(201, 98, 3, 0.4);
+}
 .white-light {
     box-shadow: 0px 0px 7px rgba(255, 255, 255, 0.7), 0px 0px 2px map-get($color, white)
 }
-
+.hide {
+    display: none;
+}
 body {
     margin: 0;
     padding: 0;
     background-color: map-get($color, milkt);
     transition: background-color 0.5s $curve;
+    &::before {
+        content: '';
+        display: block;
+        width: 104%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        mix-blend-mode: overlay;
+        opacity: 0.5;
+        background-image: url(../img/bg.jpg);
+        background-size: cover;
+        transform: translateX(-3%);
+        transition: transform 1.2s cubic-bezier(0.280, -0.010, 0.015, 1.060);
+        pointer-events: none;
+    }
     &.show-list {
         background-color: map-get($color, dark);
+        &::before {
+            opacity: 0.3;
+            transform: translateX(0%);
+        }
     }
+}
+header {
+    text-align: center;
 }
 .container {
     margin: 0 auto;
     width: 1450px;
 }
-header {
-    text-align: center;
-    #today-title {
-        @extend .white-font-light;
-        display: inline-block;
-        font-size: 60px;
-        line-height: 2.6em;
-        margin: 0;
+
+#today-title {
+    @extend .white-font-light;
+    display: inline-block;
+    font-size: 60px;
+    line-height: 2.6em;
+    margin: 0;
+    position: relative;
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 3px;
+        margin-top: -0.5em;
+        background-color: map-get($color, white);
+        @extend .white-light;
+    }
+}
+#main-menu {
+    margin: 20px 0;
+    ul {
+        width: 580px;
+        height: 44px;
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+        clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);
         position: relative;
-        &::after {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 3px;
-            margin-top: -0.5em;
-            background-color: map-get($color, white);
-            @extend .white-light;
+        button {
+            background-color: unset;
+            border: none;
+            @extend .white-font-light;
+            padding: 8px 64px;
+            text-align: left;
+        }
+        li:last-child button {
+            text-align: right;
         }
     }
-    #main-menu {
-        margin: 20px 0;
+    &.toggle_buttons-wrapper {
         ul {
-            width: 580px;
-            height: 44px;
-            margin: 0 auto;
-            padding: 0;
-            list-style: none;
-            clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);
-            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             button {
-                background-color: unset;
-                border: none;
-                @extend .white-font-light;
-                padding: 8px 64px;
-                text-align: left;
+                font-size: 24px;
+                transition: opacity 0.5s $curve, font-size 0.7s $curve;
             }
-            li:last-child button {
-                text-align: right;
+            &::after {
+                pointer-events: none;
+                content: '';
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 22px;
+                transform: translateY(-50%);
+                width: 32px;
+                height: 32px;
+                background-image: url(../img/star.svg);
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: center;
+                transition: all 0.5s cubic-bezier(0.790, 0.160, 0.230, 1.070);
             }
-        }
-        &.toggle_buttons-wrapper {
-            ul {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                button {
-                    font-size: 24px;
-                    transition: opacity 0.5s $curve, font-size 0.7s $curve;
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                left: -500%;
+                width: 600%;
+                height: 44px;
+                background: linear-gradient(90deg, rgba(139, 126, 116, 0.0) 0%, rgba(139, 126, 116, 0.4) 18%, 
+                rgba(255, 255, 255, 0.4) 32%, rgba(255, 255, 255, 0.6) 48%, rgba(255, 255, 255, 0.4) 58%, rgba(239, 207, 183, 0.06) 68%, 
+                    rgba(239, 207, 183, 0.4) 82%, rgba(239, 207, 183, 0.0) 100%);
+                transition: left 0.7s $curve;
+                pointer-events: none;
+                z-index: -1;
+            }
+            &.show-list {
+                &::before {
+                    left: 0%;
                 }
                 &::after {
-                    pointer-events: none;
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    top: 50%;
-                    left: 22px;
-                    transform: translateY(-50%);
-                    width: 32px;
-                    height: 32px;
-                    background-image: url(../img/star.svg);
-                    background-size: 100%;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    transition: all 0.5s cubic-bezier(0.790, 0.160, 0.230, 1.070);
+                    left: calc(100% - 54px);
                 }
-                &::before {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    left: -500%;
-                    width: 600%;
-                    height: 44px;
-                    background: linear-gradient(90deg, rgba(139, 126, 116, 0.0) 0%, rgba(139, 126, 116, 0.4) 18%, 
-                    rgba(255, 255, 255, 0.4) 32%, rgba(255, 255, 255, 0.6) 48%, rgba(255, 255, 255, 0.4) 58%, rgba(239, 207, 183, 0.06) 68%, 
-                        rgba(239, 207, 183, 0.4) 82%, rgba(239, 207, 183, 0.0) 100%);
-                    transition: left 0.7s $curve;
-                    pointer-events: none;
-                    z-index: -1;
-                }
-                &.show-list {
-                    &::before {
-                        left: 0%;
-                    }
-                    &::after {
-                        left: calc(100% - 54px);
-                    }
-                }
-                li:not(.on) button {
-                    opacity: 0.4;
-                    font-size: 22px;
-                    &:hover {
-                        opacity: 1;
-                    }
+            }
+            li:not(.on) button {
+                opacity: 0.4;
+                font-size: 22px;
+                &:hover {
+                    opacity: 1;
                 }
             }
         }
@@ -142,15 +179,9 @@ header {
 }
 
 #main-contents {
+    margin-bottom: 80px;
     section {
         text-align: center;
-    }
-    #calendar {
-        background-color: rgba(255, 255, 255, 0.3);
-    }
-    #list {
-        color: map-get($color, white);
-        background-color: rgba(0, 0, 0, 0.1);
     }
     .toggle_contents-box {
         overflow: hidden;
@@ -165,5 +196,188 @@ header {
                 width: 100%;
             }
         }
+    }
+}
+
+#calendar {
+    #ongoing-title {
+        margin: 8px 16px;
+        font-size: 23px;
+        font-weight: normal;
+    }
+    #ongoing-list {
+        background-color: rgba(255, 255, 255, 0.4);
+        display: grid;
+        text-align: left;
+        grid: 1fr / 100px 1fr;
+        ul {
+            margin: 8px;
+            padding: 0;
+            list-style: none;
+            li {
+                font-family: map-get($font-family, normal);
+                padding: 6px;
+                vertical-align: top;
+                span {
+                    vertical-align: top;
+                    font-size: 16px;
+                    font-family: map-get($font-family, point);
+                    color: map-get($color, point);
+                    @extend .point-font-light;
+                    display: inline-block;
+                    padding: 0 12px 0 0;
+                }
+            }
+        }
+    }
+    @mixin week-grid ($height) {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        display: grid;
+        grid-template: $height / repeat(7, 1fr);
+        list-style: none;
+        text-align: left
+    }
+    #schedule {
+        margin-top: 16px;
+        .week {
+            position: relative;
+            .date-wrapper {
+                pointer-events: none;
+                min-height: 200px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                @include week-grid(200px);
+                li {
+                    font-size: 20px;
+                    margin: 10px;
+                    padding: 4px;
+                    position: relative;
+                    &.today {
+                        background-color: #EACAAD;
+                        color: map-get($color, white);
+                        @extend .white-font-light;
+                    }
+                    &:not(:last-child)::before {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        top: -10px;
+                        right: -10px;
+                        width: 1px;
+                        height: calc(100% + 20px);
+                        background-color: map-get($color, white);
+                        @extend .white-light
+                    }
+                    &::after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        bottom: -10px;
+                        right: -10px;
+                        width: calc(100% + 20px);
+                        height: 1px;
+                        background-color: map-get($color, white);
+                        @extend .white-light
+                    }
+                }
+            }
+            .ongoing-wrapper {
+                position: relative;
+                z-index: 2;
+                @include week-grid(repeat(5, 40px));
+                grid-auto-flow: row;
+                li {
+                    font-size: 16px;
+                    color: map-get($color, point);
+                    @extend .point-font-light;
+                    margin: 10px 10px 0;
+                    background-color: rgba(239, 207, 183, 0.3);
+                    backdrop-filter: blur(2px);
+                    padding: 4px 8px;
+                    position: relative;
+                    grid-row-start: 2;
+                    grid-column: 1 / 8;
+                    position: relative;
+                    progress {
+                        -webkit-appearance: none;
+                        width: 100%;
+                        height: 4px;
+                        border-radius: 0;
+                        position: absolute;
+                        bottom: -4px;
+                        left: 0;
+                    }
+                    ::-webkit-progress-bar {
+                        background-color: #EEDDCE;
+                    }
+                    
+                    ::-webkit-progress-value {
+                        background-color: rgb(255, 255, 255);
+                        @extend .white-light
+                    }
+                    a > img {
+                        vertical-align: top;
+                        margin-top: 2px;
+                    }
+                }
+            }
+        }
+        .start2022-09-19 .ongoing-wrapper {
+            .list1 {
+                grid-row-start: 2;
+                grid-column: 1 / 8;
+            }
+            .list2 {
+                grid-row-start: 3;
+                grid-column: 1 / 6;
+            }
+            .list3 {
+                grid-row-start: 3;
+                grid-column: 6 / 8;
+            }
+        }
+    }
+}
+#list {
+    color: map-get($color, white);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    #github-link {
+        color: map-get($color, dark);
+        font-family: map-get($font-family, normal);
+        font-size: 14px;
+        text-decoration: none;
+        padding: 10px;
+        vertical-align: top;
+        &:hover {
+            @extend .point-font-light;
+        }
+        img {
+            vertical-align: top;
+            margin-top: 2px;
+            opacity: 0.8;
+            &.white {
+                display: none;
+            }
+        }
+    }
+}
+.show-list #github-link {
+    color: map-get($color, white);
+    &:hover {
+        @extend .white-font-light;
+    }
+    .black {
+        display: none;
+    }
+    .white {
+        display: inline-block;
     }
 }
