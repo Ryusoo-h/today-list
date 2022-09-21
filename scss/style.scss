@@ -230,6 +230,7 @@ header {
         }
     }
     @mixin week-grid ($height) {
+        min-height: 200px;
         margin: 0;
         padding: 0;
         width: 100%;
@@ -253,17 +254,18 @@ header {
             border-radius: 5px;
         }
         .week {
+            $gap: 10px;
             position: relative;
             .date-wrapper {
                 pointer-events: none;
-                min-height: 200px;
+                height: 100%;
                 position: absolute;
                 top: 0;
                 left: 0;
-                @include week-grid(200px);
+                @include week-grid(100%);
                 li {
                     font-size: 20px;
-                    margin: 10px;
+                    margin: $gap;
                     padding: 4px;
                     position: relative;
                     &.today {
@@ -298,9 +300,9 @@ header {
             .ongoing-wrapper {
                 position: relative;
                 z-index: 2;
-                @include week-grid(repeat(5, 40px));
+                @include week-grid(repeat(4, 40px));
                 grid-auto-flow: row;
-                li {
+                & > li {
                     font-size: 16px;
                     color: map-get($color, point);
                     @extend .point-font-light;
@@ -312,6 +314,40 @@ header {
                     grid-row-start: 2;
                     grid-column: 1 / 8;
                     position: relative;
+                    transition: background-color 0.3s $curve;
+                    &:hover {
+                        background-color: rgba(239, 207, 183, 0.5);
+                    }
+                    & .detail {
+                        margin: 0;
+                        padding: 0;
+                        width: 100%;
+                        display: grid;
+                        grid-template: 30px / repeat(7, 1fr);
+                        gap: $gap * 2;
+                        list-style: none;
+                        color: map-get($color, white);
+                        text-shadow: none;
+                        font-family: map-get($font-family, normal);
+                        font-size: 14px;
+                        background-color: rgba(187, 145, 117, 0.8);
+                        backdrop-filter: blur(10px);
+                        line-height: 30px;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        opacity: 0;
+                        height: 0;
+                        transition: all 0.3s $curve;
+                        &:hover {
+                            background-color: rgba(187, 145, 117, 0.3);
+                        }
+                    }
+                    &.on .detail {
+                        top: 0;
+                        opacity: 1;
+                        height: 30px;
+                    }
                     progress {
                         -webkit-appearance: none;
                         width: 100%;
@@ -344,10 +380,19 @@ header {
             .list2 {
                 grid-row-start: 3;
                 grid-column: 1 / 6;
+                .detail {
+                    grid-template-columns: repeat(5, 1fr);
+                }
             }
             .list3 {
                 grid-row-start: 3;
                 grid-column: 6 / 8;
+            }
+        }
+        .start2022-09-26 .ongoing-wrapper {
+            .list1 {
+                grid-row-start: 2;
+                grid-column: 4 / 5;
             }
         }
     }

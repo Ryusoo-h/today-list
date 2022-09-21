@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="container">
-            <h1 id="today-title">TODAY 2022-09-19</h1>
+            <h1 id="today-title">TODAY 2022-09-21</h1>
             <nav id="main-menu" class="toggle_buttons-wrapper">
                 <ul role="tablist">
                     <li class="toggle_button on"><button role="tab">Calendar</button></li>
@@ -28,30 +28,46 @@
                     <section id="ongoing-list">
                         <h2 id="ongoing-title">진행중</h2>
                         <ul>
-                            <li><span>CSS 설계 실전가이드 완독</span>진행률 (86/386) / 목표일 일주일(2022-09-19~2022-09-24)</li>
-                            <li><span>webRTC 강의 완강</span>진행률 (3/4) / 목표일 일주일(2022-09-19~2022-09-23)</li>
+                            <li><span>CSS 설계 실전가이드 완독</span>진행률 (110/386) / 목표일 일주일(2022-09-19~2022-09-24)</li>
+                            <li><span>webRTC 강의 완강</span>진행률 (8/20) / 목표일 일주일(2022-09-19~2022-09-23)</li>
                         </ul>
                     </section>
                     <section id="schedule">
                         <h2 class="hide">일정표</h2>
                         <div class="week start2022-09-19">
                             <ul class="date-wrapper">
-                                <li class="today">19</li>
+                                <li>19</li>
                                 <li>20</li>
-                                <li>21</li>
+                                <li class="today">21</li>
                                 <li>22</li>
                                 <li>23</li>
                                 <li class="weekend">24</li>
                                 <li class="weekend">25</li>
                             </ul>
                             <ul class="ongoing-wrapper">
-                                <li class="list1">CSS 설계 실전가이드 완독
-                                    <progress value="86" max="386">
+                                <li class="list1" onclick="showDetail(this)">CSS 설계 실전가이드 완독
+                                    <ul class="detail">
+                                        <li></li>
+                                        <li>BEM.103p</li>
+                                        <li>PRECSS.134p, 4강.160p</li>
+                                        <li>5강.180p</li>
+                                        <li>6강.244p</li>
+                                        <li>7강.326p</li>
+                                        <li>8강.348p, 9강.366 ~ 386p</li>
+                                    </ul>
+                                    <progress value="111" max="386">
                                 </li>
-                                <li class="list2">webRTC 강의 완강
-                                    <progress value="3" max="4">
+                                <li class="list2" onclick="showDetail(this)">webRTC 강의 완강
+                                    <ul class="detail">
+                                        <li></li>
+                                        <li></li>
+                                        <li>#3.0 ~ #3.4</li>
+                                        <li>#3.5 ~ 3.8</li>
+                                        <li>#3.9 ~ 3.12</li>
+                                    </ul>
+                                    <progress value="8" max="20">
                                 </li>
-                                <li class="list3">webRTC 강의 보고 만든것 github에 올리기
+                                <li class="list3">webRTC 강의 보고 만든것 다듬어서 github에 올리기
                                     <progress value="0" max="100">
                                 </li>
                             </ul>
@@ -67,7 +83,7 @@
                                 <li class="weekend">2</li>
                             </ul>
                             <ul class="ongoing-wrapper">
-                                <li>AWSOME DAY 
+                                <li class="list1">AWSOME DAY 
                                     <a href="https://aws.amazon.com/ko/events/awsome-day/awsome-day-online/?trkCampaign=awsome-day-online&trk=93786f68-ab52-4f81-a4ef-b76e0bcce837&sc_channel=em&mkt_tok=MTEyLVRaTS03NjYAAAGGj8B8vXc29W7EtQzAJiSA6IRSr-X5dDx18lK6qMPJ5JvnOs93oQ_-UNMyj--P_F5WgXTux55UzKZKkDqZsWVDzzraI7y9Dqj-X5OwzuzLeJWWJMfzoHUC">
                                         <img src="./img/link.svg" alt="바로가기">
                                     </a>
